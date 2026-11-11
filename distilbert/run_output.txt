@@ -1,0 +1,232 @@
+train: 16087 rows | test: 4022 rows
+Train class distribution:
+ label
+normal        6254
+hatespeech    5187
+offensive     4646
+Name: count, dtype: int64 
+
+[train] fit: 14478 rows | val: 1609 rows | device: cuda | amp: torch.bfloat16
+Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights:  17%|#7        | 17/100 [00:00<00:00, 150.18it/s]Loading weights: 100%|##########| 100/100 [00:00<00:00, 526.17it/s]
+[train] epoch 1/4 | loss 5.5097 | val macro-F1 label 0.5868 | mean all targets 0.4773 | 68s
+[train] epoch 2/4 | loss 3.7618 | val macro-F1 label 0.6249 | mean all targets 0.4929 | 67s
+[train] epoch 3/4 | loss 3.2577 | val macro-F1 label 0.6352 | mean all targets 0.4963 | 67s
+[train] epoch 4/4 | loss 2.9118 | val macro-F1 label 0.6402 | mean all targets 0.5053 | 67s
+[train] best epoch = 4 (val mean macro-F1 = 0.5053)
+
+===== label =====
+accuracy: 0.6862 | macro-F1: 0.6755
+              precision    recall  f1-score   support
+
+  hatespeech       0.74      0.77      0.76      1297
+      normal       0.72      0.74      0.73      1564
+   offensive       0.57      0.52      0.54      1161
+
+    accuracy                           0.69      4022
+   macro avg       0.68      0.68      0.68      4022
+weighted avg       0.68      0.69      0.68      4022
+
+
+Confusion matrix (rows=true, cols=pred):
+            hatespeech  normal  offensive
+hatespeech        1005     127        165
+normal             123    1156        285
+offensive          229     333        599
+
+===== Race =====
+accuracy: 0.8021 | macro-F1: 0.5286
+              precision    recall  f1-score   support
+
+     African       0.76      0.82      0.79       780
+        Arab       0.46      0.65      0.54       221
+       Asian       0.54      0.88      0.67        58
+   Caucasian       0.35      0.53      0.42       157
+    Hispanic       0.80      0.87      0.83        54
+      Indian       0.08      0.17      0.11         6
+  Indigenous       0.00      0.00      0.00         8
+     No_race       0.92      0.83      0.87      2738
+
+    accuracy                           0.80      4022
+   macro avg       0.49      0.59      0.53      4022
+weighted avg       0.83      0.80      0.81      4022
+
+
+Confusion matrix (rows=true, cols=pred):
+            African  Arab  Asian  ...  Indian  Indigenous  No_race
+African         640    32      8  ...       0           0       81
+Arab              6   143      1  ...       4           0       64
+Asian             2     0     51  ...       0           0        4
+Caucasian        14     6      0  ...       0           0       53
+Hispanic          1     1      1  ...       0           0        4
+Indian            0     3      0  ...       1           0        2
+Indigenous        4     1      0  ...       0           0        2
+No_race         173   125     33  ...       8           0     2261
+
+[8 rows x 8 columns]
+
+===== Religion =====
+accuracy: 0.9078 | macro-F1: 0.5543
+              precision    recall  f1-score   support
+
+    Buddhism       0.00      0.00      0.00         2
+   Christian       0.38      0.58      0.46        26
+       Hindu       0.21      0.38      0.27         8
+       Islam       0.69      0.89      0.78       496
+      Jewish       0.83      0.91      0.87       392
+Nonreligious       0.98      0.92      0.95      3098
+
+    accuracy                           0.91      4022
+   macro avg       0.52      0.61      0.55      4022
+weighted avg       0.92      0.91      0.91      4022
+
+
+Confusion matrix (rows=true, cols=pred):
+              Buddhism  Christian  Hindu  Islam  Jewish  Nonreligious
+Buddhism             0          0      0      0       0             2
+Christian            0         15      0      1       4             6
+Hindu                0          0      3      3       0             2
+Islam                0          1      3    443      15            34
+Jewish               0          3      0     12     355            22
+Nonreligious         0         20      8    183      52          2835
+
+===== Gender =====
+accuracy: 0.8299 | macro-F1: 0.5540
+              precision    recall  f1-score   support
+
+         Men       0.22      0.07      0.11       287
+   No_gender       0.90      0.90      0.90      3274
+       Women       0.57      0.77      0.66       461
+
+    accuracy                           0.83      4022
+   macro avg       0.56      0.58      0.55      4022
+weighted avg       0.81      0.83      0.82      4022
+
+
+Confusion matrix (rows=true, cols=pred):
+           Men  No_gender  Women
+Men         20        249     18
+No_gender   62       2962    250
+Women       11         94    356
+
+===== Sexual Orientation =====
+accuracy: 0.9498 | macro-F1: 0.4460
+                precision    recall  f1-score   support
+
+       Asexual       0.00      0.00      0.00         1
+  Heterosexual       0.00      0.00      0.00        26
+    Homosexual       0.75      0.88      0.81       447
+No_orientation       0.98      0.97      0.97      3548
+
+      accuracy                           0.95      4022
+     macro avg       0.43      0.46      0.45      4022
+  weighted avg       0.95      0.95      0.95      4022
+
+
+Confusion matrix (rows=true, cols=pred):
+                Asexual  Heterosexual  Homosexual  No_orientation
+Asexual               0             0           0               1
+Heterosexual          0             0           8              18
+Homosexual            0             0         394              53
+No_orientation        0             0         122            3426
+
+===== Miscellaneous =====
+accuracy: 0.8173 | macro-F1: 0.3660
+              precision    recall  f1-score   support
+
+  Disability       0.05      0.05      0.05        19
+    Economic       0.20      0.40      0.27        10
+    Minority       0.00      0.00      0.00        25
+        None       0.89      0.90      0.90      3295
+       Other       0.39      0.31      0.34       417
+     Refugee       0.59      0.71      0.64       256
+
+    accuracy                           0.82      4022
+   macro avg       0.35      0.39      0.37      4022
+weighted avg       0.81      0.82      0.81      4022
+
+
+Confusion matrix (rows=true, cols=pred):
+            Disability  Economic  Minority  None  Other  Refugee
+Disability           1         0         1     7     10        0
+Economic             0         4         0     2      3        1
+Minority             0         0         0    22      1        2
+None                13        10         4  2973    181      114
+Other                8         6         4   260    128       11
+Refugee              0         0         0    68      7      181
+
+[OK ] who let the moslems in they did not let themselves in who was behind the immigration act that opened up your country to all sorts of third world scum ignorant burger boomer a bunch of jews like jacob 
+   true=hatespeech | pred=hatespeech (0.81)
+   communities (true->pred): Religion: Islam->Islam, Miscellaneous: None->Refugee
+   key words: moslems (0.97), jews (0.52), javitz (0.29), scum (0.26), emmanuel (0.20), burger (0.17), that (0.14), world (0.14)
+
+[OK ] idiot another reason to stay out of muzzie occupied sweden the swedes have gone crazy
+   true=hatespeech | pred=hatespeech (0.82)
+   communities (true->pred): Religion: Islam->Islam
+   key words: muzzie (1.32), swedes (0.74), of (0.30), sweden (0.23), gone (0.15), idiot (0.14), out (0.09), reason (0.07)
+
+[OK ] <user> basically made a towelhead joke about punjabi ppl 😐
+   true=normal | pred=normal (0.41)
+   communities (true->pred): Race: No_race->Arab, Religion: Nonreligious->Islam
+   key words: a (1.00), punjabi (0.69), ppl (0.16), made (-0.31), about (-0.36), joke (-0.56), basically (-0.71), towelhead (-3.21)
+
+[OK ] you are an illiterate kike apparently ey <wink>
+   true=hatespeech | pred=hatespeech (0.92)
+   communities (true->pred): Religion: Jewish->Jewish
+   key words: kike (4.13), illiterate (0.38), an (0.23), are (0.07), you (0.06), wink (-0.13), ey (-0.14), apparently (-0.31)
+
+[OK ] this guy is an apostate he is no more a muslim than jesus christ
+   true=normal | pred=normal (0.60)
+   communities (true->pred): Religion: Nonreligious->Christian
+   key words: jesus (0.30), a (0.25), than (0.19), no (0.17), more (0.17), an (0.11), christ (0.11), he (-0.02)
+
+[ERR] <user> were you or your relatives refugees on this boat
+   true=offensive | pred=normal (0.83)
+   communities (true->pred): Miscellaneous: Refugee->Refugee
+   key words: this (0.35), on (0.32), relatives (-0.03), your (-0.07), boat (-0.09), or (-0.09), you (-0.19), were (-0.19)
+
+[OK ] <user> you are right do not kill yourself but jesus stop posting this shit
+   true=normal | pred=normal (0.69)
+   communities (true->pred): Religion: Nonreligious->Christian
+   key words: not (0.20), do (0.11), this (0.09), posting (0.08), but (0.02), are (-0.00), right (-0.04), kill (-0.08)
+
+[OK ] i am the collector of all white sauces
+   true=normal | pred=normal (0.97)
+   communities (true->pred): none
+   key words: white (0.38), all (0.22), sauces (0.15), i (0.14), of (0.14), collector (0.11), am (0.10), the (0.01)
+
+[OK ] fuck nigga call blocked me 😂 😂
+   true=normal | pred=normal (0.66)
+   communities (true->pred): Race: African->African, Gender: Men->No_gender
+   key words: me (0.30), nigga (-0.16), blocked (-0.20), call (-0.36), fuck (-0.71)
+
+[ERR] the internet does not allow us the social mechanisms and personal presence needed for that to happen naturally also modernity feminism has turned many women into unhinged sociopaths there is nothing y
+   true=hatespeech | pred=normal (0.70)
+   communities (true->pred): Gender: Women->Women, Miscellaneous: Other->None
+   key words: modernity (0.21), many (0.13), and (0.12), sociopaths (0.11), unhinged (0.11), is (0.10), also (0.09), not (0.09)
+
+[OK ] christians are commanded to come out and be separate muzzies and christians cannot co exist as muzzies just want to kill everybody all the time so somebody has got to go
+   true=hatespeech | pred=hatespeech (0.70)
+   communities (true->pred): Religion: Islam->Islam
+   key words: muzzies (1.59), separate (0.16), commanded (0.11), as (0.11), out (0.10), cannot (0.07), and (0.06), come (0.05)
+
+[OK ] that creature on the left she won the ghetto lottery with that one my goodness talk about lucking out maybe she his second wife hence the wedding dress if that the case please do not breed honey pleas
+   true=offensive | pred=offensive (0.60)
+   communities (true->pred): Race: No_race->African, Gender: Women->No_gender, Miscellaneous: Other->None
+   key words: ghetto (1.46), lottery (0.49), wife (0.39), his (0.36), the (0.35), creature (0.26), that (0.23), wedding (0.19)
+
+[ERR] i signed up for pandora in a ghetto city and all my ads are aids prevention pills and gun crime psas 😂 🤡
+   true=offensive | pred=normal (0.67)
+   communities (true->pred): Race: African->No_race, Gender: Men->No_gender
+   key words: crime (0.48), are (0.32), pills (0.25), in (0.17), and (0.16), psas (0.15), my (0.15), i (0.09)
+
+[OK ] i would like to volunteer a rafting service for reintegrating immigrants and their kids they can travel together free of charge across the rio grande or tijuana rivers to mexico
+   true=offensive | pred=offensive (0.42)
+   communities (true->pred): Race: Hispanic->Hispanic, Miscellaneous: Refugee->Refugee
+   key words: immigrants (0.58), volunteer (0.19), service (0.11), tijuana (0.11), and (0.09), their (0.08), can (0.07), free (0.07)
+
+[ERR] men like feminine women so low t of asians is a clear winner women like high t men however niggers are likely offset by low status
+   true=offensive | pred=hatespeech (0.74)
+   communities (true->pred): Race: African->African, Gender: Women->Women
+   key words: niggers (2.29), are (0.24), likely (0.21), high (0.16), low (0.15), clear (0.12), so (0.09), asians (0.09)
+
+Sample accuracy (label): 11/15
