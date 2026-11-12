@@ -1,6 +1,10 @@
 .venv/
 __pycache__/
 *.pyc
+
 # DistilBERT checkpoints (large)
 distilbert/model/
 distilbert/checkpoints/
+
+# RoBERTa .joblib
+roberta/rf_models.joblib 
